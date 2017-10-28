@@ -1,0 +1,36 @@
+{
+    "name": "porcupine55/interswitch",
+    "type": "library",
+    "description": "A modified Interswitch SDK by Porcupine55.",
+    "license": "ISC",
+    "authors": [
+      {
+	"name": "Lekan Omotayo",
+	"email": "developer@interswitchgroup.com"	
+      },
+      {
+        "name": "Abiola Adebanjo",
+        "email": "developer@interswitchgroup.com"
+      },
+      {
+        "name": "porupine55",
+        "email": "porcupine55@intech.com"
+      },
+      {
+          "name": "Ugochukwu Okeke",
+          "email": "developer@interswitchgroup.com"
+      }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/henryemekaonuorah92/interswitch_php"
+        }
+    ],
+    "require": {
+        "php": "^5.3.3 || ^7.0"
+    },
+    "autoload": {
+        "psr-4": {"Interswitch\\": "src/"}
+    }
+}
