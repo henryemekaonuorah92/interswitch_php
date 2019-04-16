@@ -7,7 +7,7 @@ Interswitch PHP Library
 Install the latest version with
 
 ```bash
-$ composer require Interswitch/Interswitch
+$ composer require porcupine55/interswitch
 ```
 
 ## Basic Usage
