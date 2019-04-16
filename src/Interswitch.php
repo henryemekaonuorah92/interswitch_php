@@ -23,7 +23,7 @@ class Interswitch {
   private $signatureMethod;
   private $nonce;
   private $timestamp;
-  private $terminalId = "3NRX0001";
+  private $terminalId = "3XXT0001";
   const ENV_PRODUCTION = "PRODUCTION";
   const ENV_SANDBOX = "SANDBOX";
   const ENV_DEV = "DEVELOPMENT";
@@ -80,13 +80,13 @@ function send($uri, $httpMethod, $data = null, $headers = null, $signedParameter
 
   $this->signature = Utils::generateSignature($this->clientId, $this->clientSecret, $uri, $httpMethod, $this->timestamp, $this->nonce, $signedParameters);
 
-  $passportResponse = Utils::generateAccessToken($this->clientId, $this->clientSecret, $passportUrl);
+  // $passportResponse = Utils::generateAccessToken($this->clientId, $this->clientSecret, $passportUrl);
   
-  if($passportResponse[Constants::HTTP_CODE] === 200) {
-    $this->accessToken = json_decode($passportResponse[Constants::RESPONSE_BODY], true)['access_token'];
-  } else {
-    return $passportResponse;
-  }
+  // if($passportResponse[Constants::HTTP_CODE] === 200) {
+  //   $this->accessToken = json_decode($passportResponse[Constants::RESPONSE_BODY], true)['access_token'];
+  // } else {
+  //   return $passportResponse;
+  // }
 
   // $authorization = 'Bearer ' . $this->accessToken; //depricated but might still be useful
 
@@ -116,6 +116,14 @@ function send($uri, $httpMethod, $data = null, $headers = null, $signedParameter
   } else {
     $response = HttpClient::send($constantHeaders, $httpMethod, $uri, $data);
   }
+
+  // $reminats = [
+  //   'Headers: ' . json_encode($requestHeaders),
+  //   'url: ' . $uri,
+  //   'Data: ' . json_encode($data),
+  //   'httpMethod: ' . $httpMethod,
+  //   'response: ' . json_encode($response)
+  // ];
 
   return $response;
 }
