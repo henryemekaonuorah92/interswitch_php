@@ -58,20 +58,5 @@ $respBody = $response["RESPONSE_BODY"];
 - phpseclib
 - JWT
 
-## About
-
-### Requirements
-
-- Intersiwtch SDK works with PHP 5.0 or above.
-
-### Author
-
-Lekan Omotayo - <developer@interswitchgroup.com><br />
-Abiola Adebanjo - <developer@interswitchgroup.com><br />
-
-### License
-
-Interswitch SDK is licensed under the ISC License
-
 
 
