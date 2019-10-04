@@ -80,16 +80,6 @@ function send($uri, $httpMethod, $data = null, $headers = null, $signedParameter
 
   $this->signature = Utils::generateSignature($this->clientId, $this->clientSecret, $uri, $httpMethod, $this->timestamp, $this->nonce, $signedParameters);
 
-  // $passportResponse = Utils::generateAccessToken($this->clientId, $this->clientSecret, $passportUrl);
-  
-  // if($passportResponse[Constants::HTTP_CODE] === 200) {
-  //   $this->accessToken = json_decode($passportResponse[Constants::RESPONSE_BODY], true)['access_token'];
-  // } else {
-  //   return $passportResponse;
-  // }
-
-  // $authorization = 'Bearer ' . $this->accessToken; //depricated but might still be useful
-
   $authorization = Utils::generateAuthorisation($this->clientId);
   
   $constantHeaders = [
@@ -116,15 +106,7 @@ function send($uri, $httpMethod, $data = null, $headers = null, $signedParameter
   } else {
     $response = HttpClient::send($constantHeaders, $httpMethod, $uri, $data);
   }
-
-  // $reminats = [
-  //   'Headers: ' . json_encode($requestHeaders),
-  //   'url: ' . $uri,
-  //   'Data: ' . json_encode($data),
-  //   'httpMethod: ' . $httpMethod,
-  //   'response: ' . json_encode($response)
-  // ];
-
+  
   return $response;
 }
 
@@ -172,17 +154,14 @@ function sendWithAccessToken($uri, $httpMethod, $accessToken, $data = null, $hea
     $constantHeaders = array_merge($contentType, $constantHeaders);
   }
 
-  //echo "<br>Headers 2: ";
-  //print_r($headers);
   if($headers !== null && is_array($headers)) {
-   //echo "<br> Headers is not null: " . $headers;
+    
    $requestHeaders = array_merge($headers, $constantHeaders);
-   //echo "<br> New merged Headers: " ;
-   //print_r($requestHeaders);
+    
    $response = HttpClient::send($requestHeaders, $httpMethod, $uri, $data);
   }
   else {
-   //echo "<br>Headers is null";  
+    
    $response = HttpClient::send($constantHeaders, $httpMethod, $uri, $data);
   }
 
@@ -203,9 +182,7 @@ function getAuthData($pan, $expDate, $cvv, $pin, $publicModulus = null, $publicE
 
 function getSecureData($pan, $expDate, $cvv, $pin, $amt, $msisdn, $ttid) 
 {
-  //echo "<br>Pin: " . $pin;
-  //echo "<br>CVV: " . $cvv;
-  //echo "<br>Exp Date: " . $expDate;
+  
  
   $options = array(
     'expiry' => $expDate,
@@ -223,10 +200,7 @@ function getSecureData($pan, $expDate, $cvv, $pin, $amt, $msisdn, $ttid)
 
  $secure = Utils::generateSecureData($options, $pinData);
 
- //echo "<br>Secure Data: " . $secure['secureData'];
- //echo "<br>Pin Block: " . $secure['pinBlock'];
- //echo "<br>Mac: " . $secure['mac'];
- 
+  
  return $secure;
 }
 
